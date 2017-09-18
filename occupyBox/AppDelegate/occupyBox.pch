@@ -1,0 +1,66 @@
+//
+//  occupyBox.pch
+//  occupyBox
+//
+//  Created by biqinglin on 2017/4/19.
+//  Copyright © 2017年 biqinglin. All rights reserved.
+//
+
+#ifndef occupyBox_pch
+#define occupyBox_pch
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#ifndef __OPTIMIZE__
+//#define NSLog(...) NSLog(__VA_ARGS__)
+#define NSLog(FORMAT, ...) fprintf(stderr,"[%s:%d行] %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+# define NSLog(...) {}
+//#define NSLog(FORMAT, ...) nil
+#endif
+
+//是否为空或是[NSNull null]
+#define NotNilAndNull(_ref)  (((_ref) != nil) && (![(_ref) isEqual:[NSNull null]])&&![_ref isEqual: @""])
+
+// 屏幕尺寸
+#define kScreenWidth MIN(CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].bounds))
+#define kScreenHeight MAX(CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].bounds))
+
+#define iphone6_ScreenWidth 375.0
+#define iphone6_ScreenHeight 667.0
+
+#define kWidthRatio kScreenWidth/iphone6_ScreenWidth
+#define kHeightRatio kScreenHeight/iphone6_ScreenHeight
+
+// 颜色
+#define RGB(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define RGBAlpha(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define IOS7Later ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? YES : NO)
+
+#define IOS8Later ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 ? YES : NO)
+
+#define IOS9Later ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0 ? YES : NO)
+
+#define IOS10Later ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0 ? YES : NO)
+
+//判断iphone6+
+#define iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断iphone6
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断iphone5s
+#define iPhone5s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断iphone4s
+#define iPhone4s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+
+// 判断5S以下机型
+#define before_iPhone5s kWindowWidth<350
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* occupyBox_pch */
